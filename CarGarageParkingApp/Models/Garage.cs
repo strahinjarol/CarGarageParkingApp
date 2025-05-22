@@ -2,12 +2,12 @@
 {
     public class Garage
     {
-        public int Id { get; set; }
+        public int GarageId { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
         public int Capacity { get; set; }
         public int CurrentOccupancy { get; set; }
-        public int AvilableSpots { get 
+        public int AvailableSpots { get 
             {
                 return Capacity - CurrentOccupancy;
             } 
