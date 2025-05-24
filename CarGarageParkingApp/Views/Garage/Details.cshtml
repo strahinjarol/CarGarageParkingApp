@@ -1,0 +1,23 @@
+﻿@model CarGarageParkingApp.Models.Garage
+
+@{
+	ViewData["Title"] = $"{Model.Name}{Model.Location}";
+}
+
+<h2>@Model.Name @Model.Location</h2>
+
+<div>
+	<ul>
+		<li>Garage id: @Model.GarageId</li>
+		<li>Location: @Model.Location</li>
+		<li>Capacity: @Model.Capacity</li>
+		@{
+			decimal OccupancyPrecent = ((decimal)Model.CurrentOccupancy / Model.Capacity) * 100;
+		}
+		<li>Occupancy precent: @OccupancyPrecent.ToString("F2") %</li>
+		<li>Available Spots: @Model.AvailableSpots</li>
+		<li>Is garage full: @(Model.IsFull ? "Yes" : "No")</li>
+</ul>
+</div>
+
+<a href="@Url.Action("Index", "Garage")">Back to Garage list</a>

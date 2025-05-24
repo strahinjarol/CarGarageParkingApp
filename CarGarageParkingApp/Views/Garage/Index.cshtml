@@ -1,6 +1,30 @@
-﻿@model IEnumerable<CarGarageParkingApp.Models.Owner>
+﻿@model IEnumerable<CarGarageParkingApp.Models.Garage>
 
 @{
-	ViewData["Title"] = "Hello Owner";
+	ViewData["Title"] = "Hello Garage";
 }
 
+<div class="garage-list">
+	@foreach(Garage singleGarage in Model)
+	{
+		<div class="garage-item">
+			<h2>@singleGarage.Name</h2>
+			<h3>Location: @singleGarage.Location</h3>
+			<h3>Capacity: @singleGarage.Capacity</h3>
+			@{
+				decimal OccupancyPrecent = ((decimal)singleGarage.CurrentOccupancy / singleGarage.Capacity) * 100;
+			}
+			<h3>Occupancy precent: @OccupancyPrecent.ToString("F2") %</h3>
+			<h3>Available Spots: @singleGarage.AvailableSpots</h3>
+			<h3>Is garage full: @(singleGarage.IsFull? "Yes":"No")</h3>
+			<a href="@Url.Action("Details", "Garage", new { id = singleGarage.GarageId })">Details</a>
+		</div>
+	}
+</div>
+<style>
+	.garage-item {
+		background-color: burlywood;
+		margin: 15px;
+		padding: 15px;
+	}
+</style>
