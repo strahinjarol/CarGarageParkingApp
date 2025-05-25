@@ -7,15 +7,18 @@ namespace CarGarageParkingApp.Controllers
     {
         public IActionResult Index(string firstName, string lastName, int? numberOfVehicles)
         {
+            firstName = firstName?.Trim();
+            lastName = lastName?.Trim();
+
             IEnumerable<Owner> owners = GetAllOwners();
 
             if(firstName != null)
             {
-                owners = owners.Where(o => o.FirstName.Contains(firstName, StringComparison.OrdinalIgnoreCase));
+                owners = owners.Where(o => o.FirstName.Contains(firstName.Trim(), StringComparison.OrdinalIgnoreCase));
             }
             if(lastName != null)
             {
-                owners = owners.Where(o => o.LastName.Contains(lastName, StringComparison.OrdinalIgnoreCase));
+                owners = owners.Where(o => o.LastName.Contains(lastName.Trim(), StringComparison.OrdinalIgnoreCase));
             }
             if(numberOfVehicles.HasValue)
             {
