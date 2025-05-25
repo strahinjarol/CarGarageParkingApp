@@ -5,9 +5,22 @@ namespace CarGarageParkingApp.Controllers
 {
     public class OwnerController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string firstName, string lastName, int? numberOfVehicles)
         {
             IEnumerable<Owner> owners = GetAllOwners();
+
+            if(firstName != null)
+            {
+                owners = owners.Where(o => o.FirstName.Contains(firstName, StringComparison.OrdinalIgnoreCase));
+            }
+            if(lastName != null)
+            {
+                owners = owners.Where(o => o.LastName.Contains(lastName, StringComparison.OrdinalIgnoreCase));
+            }
+            if(numberOfVehicles.HasValue)
+            {
+                owners = owners.Where(o => o.Vehicles.Count == numberOfVehicles.Value);
+            }
 
             return View(owners);
         }

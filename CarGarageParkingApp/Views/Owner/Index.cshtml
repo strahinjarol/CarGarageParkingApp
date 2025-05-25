@@ -4,6 +4,19 @@
 	ViewData["Title"] = "Hello Owner";
 }
 
+<form asp-action="Index" asp-controller="Owner" method="get">
+	<label for="firstName">First name:</label>
+	<input type="text" id="firstName" name="firstName" placeholder="Enter first name" value="@Context.Request.Query["FirstName"]" />
+
+	<label for="lastName">Last name:</label>
+	<input type="text" id="lastName" name="lastName" placeholder="Enter last name" value="@Context.Request.Query["LastName"]" />
+
+	<label for="numberOfVehicles">Number of vehicles</label>
+	<input type="number" id="numberOfVehicles" name="numberOfVehicles" placeholder="Enter number of vehicles" step="1" min="0" value="@Context.Request.Query["NumberOfVehicles"]" />
+
+	<button type="submit" class="btn btn-primary">Search</button>
+</form>
+
 <h1>Collection of owners</h1>
 
 <div>
