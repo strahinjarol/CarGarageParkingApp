@@ -4,13 +4,29 @@
 	ViewData["Title"] = "Hello Garage";
 }
 
+<form asp-action="Index" asp-controller="Garage" method="get">
+	<label for="name">Name:</label>
+	<input type="text" id="name" name="name" placeholder="Enter name" value="@Context.Request.Query["name"]" />
+
+	<label for="location">Location:</label>
+	<input type="text" id="location" name="location" placeholder="Enter location" value="@Context.Request.Query["location"]" />
+
+	<label for="capacity">Capacity:</label>
+	<input type="number" id="capacity" name="capacity" placeholder="Enter capacity" min="0" value="@Context.Request.Query["capacity"]" />
+
+	<label for="availableSpots">Available spots</label>
+	<input type="number" id="availableSpots" name="availableSpots" placeholder="Enter available spots" min="0" value="@Context.Request.Query["availableSpots"]" />
+
+	<button type="submit" class="btn btn-primary">Search</button>
+</form>
+
 <div class="garage-list">
 	@foreach(Garage singleGarage in Model)
 	{
 		<div class="garage-item">
-			<h2>@singleGarage.Name</h2>
+			<h2>Name: @singleGarage.Name</h2>
 			<h3>Location: @singleGarage.Location</h3>
-			<h3>Capacity: @singleGarage.Capacity</h3>
+@* 			<h3>Capacity: @singleGarage.Capacity</h3> *@
 			@{
 				decimal OccupancyPrecent = ((decimal)singleGarage.CurrentOccupancy / singleGarage.Capacity) * 100;
 			}

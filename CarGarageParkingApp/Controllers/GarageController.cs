@@ -5,10 +5,27 @@ namespace CarGarageParkingApp.Controllers
 {
     public class GarageController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string name, string location, int? capacity, int? availableSpots)
         {
             IEnumerable<Garage> garages = ShowAllGarages();
-            
+
+            if(name != null)
+            {
+               garages = garages.Where(g => g.Name.Contains(name.Trim(), StringComparison.OrdinalIgnoreCase));
+            }
+            if(location != null)
+            {
+                garages = garages.Where(g => g.Location.Contains(location.Trim(), StringComparison.OrdinalIgnoreCase));
+            }
+            if(capacity.HasValue)
+            {
+                garages = garages.Where(g => g.Capacity >= capacity.Value);
+            }
+            if(availableSpots.HasValue)
+            {
+                garages = garages.Where(g => g.AvailableSpots >= availableSpots.Value);
+            }
+
             return View(garages);
         }
 
