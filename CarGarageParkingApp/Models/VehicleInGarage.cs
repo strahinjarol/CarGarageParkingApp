@@ -17,7 +17,12 @@ namespace CarGarageParkingApp.Models
         [Required(ErrorMessage = "Entry time is required.")]
         [DataType(DataType.DateTime)]
         public DateTime EntryTime { get; set; }
+
+        //[DateGreaterThan("EntryTime", ErrorMessage = "Exit time must be greater than entry time.")]
+        [DataType(DataType.DateTime)]
         public DateTime? ExitTime { get; set; }
+        [Required]
+        [Range(0.01, double.MaxValue, ErrorMessage = "HourlyRate rate must be greather than zero.")]
         public decimal HourlyRate { get; set; }
         public int? OwnerId { get; set; }
         public Owner? Owner { get; set; }

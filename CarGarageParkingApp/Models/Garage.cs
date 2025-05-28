@@ -17,7 +17,8 @@ namespace CarGarageParkingApp.Models
         [Range(1, int.MaxValue, ErrorMessage = "Capacity must be greater than 0")]
         public int Capacity { get; set; }
 
-        [Range(0, int.MaxValue, ErrorMessage = "Current occupancy cannot be negative")]
+        [Range(0, int.MaxValue, ErrorMessage = "Current occupancy can not be nagetive.")]
+        //[IntTypeGreaterThan("Capacity", ErrorMessage = "Capacity  must be greater or equal than current capacity.")]
         public int CurrentOccupancy { get; set; }
         public int AvailableSpots { get 
             {
