@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CarGarageParking.Util;
+using System.ComponentModel.DataAnnotations;
 
 namespace CarGarageParkingApp.Models
 {
@@ -15,7 +16,7 @@ namespace CarGarageParkingApp.Models
         [DataType(DataType.DateTime)]
         public DateTime PaymentTime { get; set; }
 
-        //[DateGreaterThan("PaymentTime", ErrorMessage = "Expiration date must be greater than payment time.")]
+        [DateGreaterThan("PaymentTime", ErrorMessage = "Expiration date must be greater than payment time.")]
         [DataType(DataType.DateTime)]
         public DateTime ExparationTime { get; set; } // This is the time + 15min when the payment expires and the vehicle must be removed from the garage or the payment must be renewed.
 

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CarGarageParking.Util;
+using System.ComponentModel.DataAnnotations;
 
 namespace CarGarageParkingApp.Models
 {
@@ -18,7 +19,7 @@ namespace CarGarageParkingApp.Models
         [DataType(DataType.DateTime)]
         public DateTime EntryTime { get; set; }
 
-        //[DateGreaterThan("EntryTime", ErrorMessage = "Exit time must be greater than entry time.")]
+        [DateGreaterThan("EntryTime", ErrorMessage = "Exit time must be greater than entry time.")]
         [DataType(DataType.DateTime)]
         public DateTime? ExitTime { get; set; }
         [Required]
